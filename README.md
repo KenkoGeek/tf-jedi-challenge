@@ -23,11 +23,7 @@ cd lambda_function/
 ```
 
 ```sh
-zip lambda_function.zip lambda_function.py
-```
-
-```sh
-mv lambda_function.zip ../
+zip ../lambda_function.zip lambda_function.py ; cd ../
 ```
 
 ### Terraform Commands
