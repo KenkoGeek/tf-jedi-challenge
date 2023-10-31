@@ -102,7 +102,7 @@ curl -X POST -H "x-api-key: APIKEY"  -H "Content-Type: application/json" -d '{"1
 
 ## Security
 
-The API is secured using API keys. The POST method, which adds new Jedi to the database, requires a valid API key to be included in the `x-api-key` header of the request. This API key is stored securely in AWS Secrets Manager, and its access is restricted to authorized individuals.
+The API is secured using API keys. Use this API requires a valid API key to be included in the `x-api-key` header of the request. This API key is stored securely in AWS Secrets Manager, and its access is restricted to authorized individuals.
 
 ## Conclusion
 
