@@ -16,6 +16,20 @@ The system is built on AWS, utilizing services such as Lambda, API Gateway, Dyna
 - The API key for secure access, stored in AWS Secrets Manager.
 - Clone/fork this repository
 
+### Preparing the lambda source code
+
+```sh
+cd lambda_function/
+```
+
+```sh
+zip lambda_function.zip lambda_function.py
+```
+
+```sh
+mv lambda_function.zip ../
+```
+
 ### Terraform Commands
 
 To set up the infrastructure for the Jedi Council API, you need to run the following Terraform commands:
@@ -38,7 +52,7 @@ To set up the infrastructure for the Jedi Council API, you need to run the follo
    terraform apply
    ```
 
-   When prompted, enter `yes` to proceed with the application of the plan.
+   When prompted, enter `yes` to proceed with the application of the plan and be aware for the outputs, this will give the API URI and the Secrets Manager name that contains the API Key.
 
 4. **Destroy Terraform Managed Infrastructure**: (Optional) This command is used to destroy Terraform-managed infrastructure.
 
