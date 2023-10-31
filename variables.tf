@@ -1,9 +1,11 @@
 variable "aws_region" {
-  default = "us-east-1"
-  type    = string
+  default     = "us-east-1"
+  type        = string
+  description = "Region to deploy"
 }
 
 variable "environment" {
-  default = "prod"
-  type    = string
+  default     = "prod"
+  type        = string
+  description = "Deployment stage name"
 }
