@@ -107,7 +107,24 @@ curl -H "x-api-key: APIKEY" https://rjzs8oksk4.execute-api.us-east-1.amazonaws.c
 ```
 
 ```bash
-curl -X POST -H "x-api-key: APIKEY"  -H "Content-Type: application/json" -d '{"12345": {"name": "Jedi Full Name", "planet": "planet name", "power_level": 100}}' https://rjzs8oksk4.execute-api.us-east-1.amazonaws.com/env_name/jedi
+curl -X POST \
+  https://rjzs8oksk4.execute-api.us-east-1.amazonaws.com/env_name/jedi \
+  -H 'Content-Type: application/json' \
+  -H 'x-api-key: APIKEY' \
+  -d '[
+  {"id": "09876", "name": "Jedi 1 Full Name", "planet": "Planet Name 1", "power_level": 90},
+  {"id": "54321", "name": "Jedi 2 Full Name", "planet": "Planet Name 2", "power_level": 85},
+  {"id": "12345", "name": "Jedi 3 Full Name", "planet": "Planet Name 3", "power_level": 80},
+]'
+
+```
+
+```bash
+curl -X POST \
+  https://rjzs8oksk4.execute-api.us-east-1.amazonaws.com/env_name/jedi \
+  -H 'Content-Type: application/json' \
+  -H 'x-api-key: APIKEY' \
+  -d '[{"id": "56789", "name": "Jedi Full Name", "planet": "Planet Name", "power_level": 70}]'
 ```
 
 ## Security

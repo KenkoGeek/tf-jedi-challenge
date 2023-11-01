@@ -38,21 +38,25 @@ def handle_get(jedi_id):
 
 def handle_post(event):
     try:
-        body = json.loads(event.get('body', '{}'))
+        body = json.loads(event.get('body', '{}'), parse_float=Decimal)
     except json.JSONDecodeError:
         return {'statusCode': 400, 'body': json.dumps('Invalid JSON')}
 
-    jedi_id = list(body.keys())[0]
-    jedi_data = body[jedi_id]
+    if not isinstance(body, list):
+        body = [body]
 
-    # Check if the Jedi ID already exists
-    existing_item = table.get_item(Key={'id': jedi_id}).get('Item')
-    if existing_item:
-        return {'statusCode': 409, 'body': json.dumps('Jedi ID already exists')}
+    for jedi in body:
+        jedi_id = jedi.get('id')
+        if not jedi_id:
+            return {'statusCode': 400, 'body': json.dumps('Missing Jedi ID')}
 
-    # Insert the new Jedi into the DynamoDB table
-    jedi_data['id'] = jedi_id
-    table.put_item(Item=jedi_data)
+        # Check if the Jedi ID already exists
+        existing_item = table.get_item(Key={'id': jedi_id}).get('Item')
+        if existing_item:
+            return {'statusCode': 409, 'body': json.dumps(f'Jedi ID {jedi_id} already exists')}
+
+        # Insert the new Jedi into the DynamoDB table
+        table.put_item(Item=jedi)
 
     return {'statusCode': 201, 'body': json.dumps('Jedi added successfully')}
 
