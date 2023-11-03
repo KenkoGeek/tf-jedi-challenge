@@ -8,6 +8,48 @@ The Jedi Council API is a secure and efficient system designed to manage and ret
 
 The system is built on AWS, utilizing services such as Lambda, API Gateway, DynamoDB, KMS, and Secrets Manager. The Lambda function is written in Python and handles all the logic for data retrieval and modification. The API Gateway acts as the entry point for all requests, ensuring secure and controlled access to the data. DynamoDB serves as the database, storing all the information about the Jedi. KMS is used for encryption needs, and Secrets Manager securely stores the API key required to access the POST method of the API.
 
+## Design Decisions and Strategies
+
+### Choice of AWS Services
+
+#### AWS Lambda
+
+**Reason**: AWS Lambda was chosen to implement the business logic of the system. It is highly scalable, making it suitable for handling variable workloads. Additionally, it runs only when invoked, reducing costs and simplifying management.
+
+#### AWS API Gateway
+
+**Reason**: API Gateway is used to expose HTTP endpoints for interacting with AWS Lambda. This provides a straightforward and secure interface for accessing the system. It also integrates with other AWS services, such as Lambda, making deployment easier.
+
+#### Amazon DynamoDB
+
+**Reason**: DynamoDB was selected as the database for storing information about Jedi. Its scalability, performance, and high availability capabilities make it a solid choice for an application that could have a high volume of data and traffic.
+
+#### AWS Key Management Service (KMS)
+
+**Reason**: KMS is used to manage encryption keys for data stored in DynamoDB. This ensures that data is secure and compliant with security regulations.
+
+#### AWS Secrets Manager
+
+**Reason**: Secrets Manager is used to securely store API keys. This protects the keys and ensures that only authorized parties have access to the system's resources.
+
+### Implementation Strategies
+
+#### Security
+
+Security is a top priority. KMS keys are used to encrypt data stored in DynamoDB, ensuring the confidentiality of Jedi information. Secrets Manager secures API keys.
+
+#### Scalability
+
+The architecture is highly scalable. Lambda and DynamoDB automatically scale to handle variable workloads. This ensures the system can handle an increase in the number of Jedi seamlessly.
+
+#### Efficiency
+
+The use of AWS Lambda means resources are only used when the function is invoked. This reduces costs by avoiding constant server execution.
+
+#### Maintenance
+
+AWS manages the underlying infrastructure. Infrastructure as code (Terraform) is used to configure and deploy AWS services. This makes administration and ongoing maintenance of the system straightforward.
+
 ## How to Use the API
 
 ### Prerequisites
